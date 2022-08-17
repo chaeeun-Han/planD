@@ -20,6 +20,10 @@ router.get('/join', (req, res) => {
     res.render('join', {title: '회원가입'});
 });
 
+router.get('/login', (req, res) => {
+    res.render('login', {title: '로그인'});
+});
+
 router.get('/', (req, res, next) => {
     const twits = [];
     res.render('index', {
