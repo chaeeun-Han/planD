@@ -85,6 +85,7 @@ body{
 	background-color: #7b68ee;
 	color: white;
 	border: solid 1px var(--naver-green-border-color);
+	cursor: pointer;
 }
 .login-stay-sign-in{
 	width: 465px;
