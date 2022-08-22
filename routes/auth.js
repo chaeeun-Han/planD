@@ -6,9 +6,9 @@ const User = require('../models/user');
 
 const router = express.Router();
 
-// 회원가입 라우터
-router.post('/join', isNotLoggedIn, async (req, res, next) => {
-    const { email, password, name, birthday, gender } = req.body;
+// 회원가입 라우터 , birthday, gender
+router.post('/join', async (req, res, next) => {
+    const { email, name, password } = req.body;
     try {
         const exUser = await User.findOne({ where: { email } });     // 같은 이메일로 가입한 사용자가 있는지 조회
         if (exUser) {                                               // 존재할 경우, 회원가입 페이지로 되돌려보냄
@@ -17,10 +17,8 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
         const hash = await bcrypt.hash(password, 12);
         await User.create({
             email,
-            password: hash,
             name,
-            birthday,
-            gender,
+            password: hash,
         });
         return res.redirect('/');
     } catch (error) {
@@ -29,21 +27,21 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
     }
 });
 
-router.post('/login', isNotLoggedIn, (req, res, next) => {
+router.post('/login', (req, res, next) => {
     passport.authenticate('local', (authError, user, info) => {
         if (authError) {
             console.error(authError);
             return next(authError);
         }
         if (!user) {
-            return res.redirect('/?loginError=${info.message}');
+            return res.redirect('/?loginError='+ info.message);
         }
         return req.login(user, (loginError) => {
             if (loginError) {
                 console.error(loginError);
                 return next(loginError);
             }
-            return res.redirect('/');
+            return res.redirect('/report');
         });
     })(req, res, next);
 });
@@ -51,6 +49,14 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 router.get('/logout', isLoggedIn, (req, res) => {
     req.logout();
     req.session.destroy();
+    res.redirect('/');
+});
+
+router.get('/kakao', passport.authenticate('kakao'));
+
+router.get('/kakao/callback', passport.authenticate('kakao', {
+    failureRedirect: '/',
+}), (req, res) => {
     res.redirect('/');
 });
 

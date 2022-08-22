@@ -2,7 +2,7 @@
 <html lnag="ko">
     <head>
         <meta charset="UTF-8">
-        <title>PLAN D 회원가입</title>
+        <title>{{ title }}</title>
         <link rel="stylesheet" href="/join.css">
        
     </head>
@@ -17,105 +17,117 @@
 
             <!-- content-->
             <div id="content">
+                <form action="/auth/join" method="post">
+                    <!-- Email -->
+                    <div>
+                        <h3 class="join_title"><label for="email">아이디</label></h3>
+                        <span class="box int_id">
+                            <input id="input-box" type="email" name="email" maxlength="40" autocomplete="on" required>
+                        </span>
+                    </div>
 
-                <!-- Email -->
-                <div>
-                    <h3 class="join_title">
-                        <label for="email">아이디</label>
-                    </h3>
-                    <span class="box int_id">
-                        <input id="join-email" type="email" name="email" class="int" maxlength="20">
-                    </span>
-                </div>
+                    <!-- PW1 -->
+                    <div>
+                        <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
+                        <span class="box int_pass">
+                            <input id="input-box" type="password" name="password" maxlength="100" required>
+                        </span>
+                    </div>
 
-                <!-- PW1 -->
-                <div>
-                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
-                    <span class="box int_pass">
-                        <input id="join-password" type="password" name="password" class="int" maxlength="20">
-                      </span>
-                </div>
+                    <!-- PW2 -->
+                    <div>
+                        <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
+                        <span class="box int_pass_check">
+                            <input id="input-box" type="password" maxlength="100" required>
+                        </span>
+                    </div>
 
-                <!-- PW2 -->
-                <div>
-                    <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
-                    <span class="box int_pass_check">
-                        <input type="text" id="pswd2" class="int" maxlength="20">
-                    </span>
-                </div>
+                    <!-- NAME -->
+                    <div>
+                        <h3 class="join_title"><label for="name">이름</label></h3>
+                        <span class="box int_name">
+                            <input id="input-box" type="text" name="name" maxlength="20" autocomplete="on" required>
+                        </span>
+                    </div>
 
-                <!-- NAME -->
-                <div>
-                    <h3 class="join_title"><label for="name">이름</label></h3>
-                    <span class="box int_name">
-                        <input id="join-name" type="text" name="name" class="int" maxlength="20">
-                    </span>
-                </div>
+                    <!-- BIRTH -->
+                    <div>
+                        <h3 class="join_title"><label for="yy">생년월일</label></h3>
 
-                <!-- BIRTH -->
-                <div>
-                    <h3 class="join_title"><label for="yy">생년월일</label></h3>
+                        <div id="bir_wrap">
+                            <!-- BIRTH_YY -->
+                            <div id="bir_yy">
+                                <span class="box">
+                                    <input type="number" id="input-box" maxlength="4" placeholder="년(4자)" autocomplete="on" required>
+                                </span>
+                            </div>
 
-                    <div id="bir_wrap">
-                        <!-- BIRTH_YY -->
-                        <div id="bir_yy">
-                            <span class="box">
-                                <input type="text" id="yy" class="int" maxlength="4" placeholder="년(4자)">
-                            </span>
-                        </div>
+                            <!-- BIRTH_MM -->
+                            <div id="bir_mm">
+                                <span class="box">
+                                    <select id="mm" required>
+                                        <option hidden>월</option>
+                                        <option value="01">1</option>
+                                        <option value="02">2</option>
+                                        <option value="03">3</option>
+                                        <option value="04">4</option>
+                                        <option value="05">5</option>
+                                        <option value="06">6</option>
+                                        <option value="07">7</option>
+                                        <option value="08">8</option>
+                                        <option value="09">9</option>                                    
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </span>
+                            </div>
 
-                        <!-- BIRTH_MM -->
-                        <div id="bir_mm">
-                            <span class="box">
-                                <select id="mm" class="sel">
-                                    <option>월</option>
-                                    <option value="01">1</option>
-                                    <option value="02">2</option>
-                                    <option value="03">3</option>
-                                    <option value="04">4</option>
-                                    <option value="05">5</option>
-                                    <option value="06">6</option>
-                                    <option value="07">7</option>
-                                    <option value="08">8</option>
-                                    <option value="09">9</option>                                    
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </span>
-                        </div>
+                            <!-- BIRTH_DD -->
+                            <div id="bir_dd">
+                                <span class="box">
+                                    <input type="number" id="input-box" min="1" max="31" placeholder="일" autocomplete="on" required>
+                                </span>
+                            </div>
+                        </div> 
+                    </div>
 
-                        <!-- BIRTH_DD -->
-                        <div id="bir_dd">
-                            <span class="box">
-                                <input type="text" id="dd" class="int" maxlength="2" placeholder="일">
-                            </span>
-                        </div>
-                    </div> 
-                </div>
+                    <!-- GENDER -->
+                    <div>
+                        <h3 class="join_title"><label for="gender">성별</label></h3>
+                        <span class="box gender_code">
+                            <select id="gender" onchange="inGender()" required>
+                                <option hidden>성별</option>
+                                <option value="남자">남자</option>
+                                <option value="여자">여자</option>
+                            </select>                           
+                        </span>
+                    </div>
 
-                <!-- GENDER -->
-                <div>
-                    <h3 class="join_title"><label for="gender">성별</label></h3>
-                    <span class="box gender_code">
-                        <select id="gender" class="sel">
-                            <option>성별</option>
-                            <option value="M">남자</option>
-                            <option value="F">여자</option>
-                        </select>                            
-                    </span>
-                </div>
-
-                <!-- JOIN BTN-->
-                <div class="btn_area">
-                    <button id="btnJoin" type="submit" class="btn">
-                        <span>가입하기</span>
-                    </button>
-                </div>
-                
+                    <!-- JOIN BTN-->
+                    <div class="btn_area">
+                        <button id="btnJoin" type="submit" class="btn">
+                            <span>가입하기</span>
+                        </button>
+                    </div>
+                </form>  
             </div> 
             <!-- content-->
         </div> 
         <!-- wrapper -->
+
+        <script>
+            window.onload = () => {
+                if (new URL(location.href).searchParams.get('error')) {
+                    alert('이미 존재하는 이메일입니다.');
+                }
+            }
+
+            function inGender() {
+                var genSelect = document.getElementById("gender");
+                User.gender = genSelect.options[genSelect.selectedIndex].value;
+            }
+        </script>
+        
     </body>
 </html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <div class="user-name">{{'안녕하세요! ' + user.name + '님'}}</div>
+    <div class="user-info">
+        <p>
+            id: {{ user.id }} <br>
+            email: {{ user.email }} <br>
+            password: {{ user.password }} <br>
+            name: {{ user.name }} <br>
+            birthday: {{ user.birthday }} <br>
+            gender: {{ user.gender }}
+        </p>
+    </div>
+
+</body>
+</html>

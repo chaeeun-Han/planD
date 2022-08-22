@@ -85,6 +85,7 @@ body{
 	background-color: #7b68ee;
 	color: white;
 	border: solid 1px var(--naver-green-border-color);
+	cursor: pointer;
 }
 .login-stay-sign-in{
 	width: 465px;
@@ -128,6 +129,11 @@ body{
 }
 .Easy-sgin-in-wrap .sign-button-list li{
 	padding-bottom: 10px;
+}
+#kakao {
+	border-radius: 30%;
+	width:80px;
+	height:60px;
 }
 #circle {
 	border-radius: 30%;

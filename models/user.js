@@ -20,12 +20,14 @@ module.exports = class User extends Sequelize.Model {
                 allowNull: false,
             },
             birthday: {
-                type: Sequelize.DATE,
+                type: Sequelize.STRING(15),
                 allowNull: false,
+                defaultValue: '2001-09-11'
             },
             gender: {
                 type: Sequelize.STRING(4),
                 allowNull: false,
+                defaultValue: '성별'
             },
             blood_type: {
                 type: Sequelize.STRING(4),
@@ -40,7 +42,7 @@ module.exports = class User extends Sequelize.Model {
                 allowNull: true,
             },
             diagnosis_year: {
-                type: Sequelize.DATE,
+                type: Sequelize.STRING(4),
                 allowNull: true,
             },
             diabetes_type: {

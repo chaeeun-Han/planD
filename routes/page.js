@@ -3,12 +3,9 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
 
-// 사용자 이름, 아이디, 비밀번호 요청 및 응답
+// 템플릿 엔진에서 사용할 user 변수 설정
 router.use((req, res, next) => {
     res.locals.user = req.user;
-    res.locals.name = null;
-    res.locals.id = null;
-    res.locals.password = null;
     next(); 
 });
 
@@ -16,11 +13,15 @@ router.get('/profile', isLoggedIn, (req, res) => {
     res.render('profile', { title: '내 정보'});
 });
 
-router.get('/join', isNotLoggedIn, (req, res) => {
+router.get('/report', isLoggedIn, (req, res) => {
+    res.render('report', {title: '레포트'});
+});
+
+router.get('/join', (req, res) => {
     res.render('join', {title: '회원가입'});
 });
 
-router.get('/login', isNotLoggedIn, (req, res) => {
+router.get('/login', (req, res) => {
     res.render('login', {title: '로그인'});
 });
 

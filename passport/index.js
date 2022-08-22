@@ -1,6 +1,6 @@
 const passport = require('passport');
 const local = require('./localStrategy');   // 로컬 로그인 시 동작을 위한 파일
-//const kakao = require('./kakaoStrategy');   // 카카오 로그인 시 동작을 위한 파일
+const kakao = require('./kakaoStrategy');   // 카카오 로그인 시 동작을 위한 파일
 const User = require('../models/user');
 
 module.exports = () => {
@@ -18,5 +18,5 @@ module.exports = () => {
     });
 
     local();
-    //kakao();
-}
+    kakao();
+};
