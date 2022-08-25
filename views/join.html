@@ -30,7 +30,7 @@
                     <div>
                         <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                         <span class="box int_pass">
-                            <input id="input-box" type="password" name="password" maxlength="100" required>
+                            <input id="pswd1" type="password" name="password" maxlength="100" required>
                         </span>
                     </div>
 
@@ -38,8 +38,9 @@
                     <div>
                         <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                         <span class="box int_pass_check">
-                            <input id="input-box" type="password" maxlength="100" required>
+                            <input id="pswd2" type="password" maxlength="100" onchange='passwordCheck()' required>
                         </span>
+                        <div id='result'></div>
                     </div>
 
                     <!-- NAME -->
@@ -58,14 +59,14 @@
                             <!-- BIRTH_YY -->
                             <div id="bir_yy">
                                 <span class="box">
-                                    <input type="number" id="input-box" maxlength="4" placeholder="년(4자)" autocomplete="on" required>
+                                    <input type="number" id="input-box" name="birthYear" maxlength="4" placeholder="년(4자)" autocomplete="on" required>
                                 </span>
                             </div>
 
                             <!-- BIRTH_MM -->
                             <div id="bir_mm">
                                 <span class="box">
-                                    <select id="mm" required>
+                                    <select id="mm" name="birthMonth" required>
                                         <option hidden>월</option>
                                         <option value="01">1</option>
                                         <option value="02">2</option>
@@ -86,7 +87,7 @@
                             <!-- BIRTH_DD -->
                             <div id="bir_dd">
                                 <span class="box">
-                                    <input type="number" id="input-box" min="1" max="31" placeholder="일" autocomplete="on" required>
+                                    <input type="number" id="input-box" name="birthDate" min="1" max="31" placeholder="일" autocomplete="on" required>
                                 </span>
                             </div>
                         </div> 
@@ -96,7 +97,7 @@
                     <div>
                         <h3 class="join_title"><label for="gender">성별</label></h3>
                         <span class="box gender_code">
-                            <select id="gender" onchange="inGender()" required>
+                            <select id="gender" name = "gender" required>
                                 <option hidden>성별</option>
                                 <option value="남자">남자</option>
                                 <option value="여자">여자</option>
@@ -121,11 +122,16 @@
                 if (new URL(location.href).searchParams.get('error')) {
                     alert('이미 존재하는 이메일입니다.');
                 }
-            }
+            } 
 
-            function inGender() {
-                var genSelect = document.getElementById("gender");
-                User.gender = genSelect.options[genSelect.selectedIndex].value;
+            function passwordCheck()  {
+                const pswd1 = document.getElementById('pswd1').value;
+                const pswd2 = document.getElementById('pswd2').value;
+
+                if (pswd1 == pswd2)
+                    document.getElementById("result").innerText = "확인되었습니다.";
+                else
+                    document.getElementById("result").innerText = "비밀번호가 일치하지 않습니다.";
             }
         </script>
         

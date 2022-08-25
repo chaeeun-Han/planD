@@ -51,7 +51,7 @@ h3 {
     position: relative;
 }
 
-#input-box {
+#input-box, #pswd1, #pswd2{
     display: block;
     position: relative;
     width: 100%;

@@ -8,7 +8,7 @@ const router = express.Router();
 
 // 회원가입 라우터 , birthday, gender
 router.post('/join', async (req, res, next) => {
-    const { email, name, password } = req.body;
+    const { email, name, password, gender, birthYear, birthMonth, birthDate } = req.body;
     try {
         const exUser = await User.findOne({ where: { email } });     // 같은 이메일로 가입한 사용자가 있는지 조회
         if (exUser) {                                               // 존재할 경우, 회원가입 페이지로 되돌려보냄
@@ -19,6 +19,8 @@ router.post('/join', async (req, res, next) => {
             email,
             name,
             password: hash,
+            gender,
+            birthday: `${birthYear}-${birthMonth}-${birthDate}`,
         });
         return res.redirect('/');
     } catch (error) {
